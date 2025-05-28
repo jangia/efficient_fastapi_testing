@@ -1,27 +1,13 @@
 import uuid
 from typing import Callable
 
-import pytest
 from fastapi import status
 from fastapi.testclient import TestClient
 
 from efficient_testing.dependency import get_todo_repository, get_uuid_provider
-from efficient_testing.main import app
 from efficient_testing.models import ToDo
 from efficient_testing.repository import TodoRepository
 from efficient_testing.uuid_provider import FixedUUIDProvider
-
-
-@pytest.fixture
-def create_api_client() -> Callable[..., TestClient]:
-    def _create_api_client(**kwargs) -> TestClient:
-        dependency_overrides = kwargs.get("dependency_overrides", {})
-        app.dependency_overrides.update(dependency_overrides)
-        return TestClient(app)
-
-    app.dependency_overrides.clear()
-
-    yield _create_api_client
 
 
 def test_create_todo(
