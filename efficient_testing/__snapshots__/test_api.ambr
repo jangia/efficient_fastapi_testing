@@ -1,0 +1,41 @@
+# serializer version: 1
+# name: test_create_todo
+  dict({
+    'completed': False,
+    'description': 'This is a test todo',
+    'id': 'd2ab1f78-f1ba-44da-9c82-beed46284466',
+    'title': 'Test Todo',
+  })
+# ---
+# name: test_read_all_todos
+  list([
+    dict({
+      'completed': False,
+      'description': 'This is the first test todo',
+      'id': 'd2ab1f78-f1ba-44da-9c82-beed46284466',
+      'title': 'Test Todo 1',
+    }),
+    dict({
+      'completed': True,
+      'description': 'This is the second test todo',
+      'id': 'b3ab1f78-f1ba-44da-9c82-beed46284467',
+      'title': 'Test Todo 2',
+    }),
+  ])
+# ---
+# name: test_read_todo
+  dict({
+    'completed': False,
+    'description': 'This is a test todo',
+    'id': 'd2ab1f78-f1ba-44da-9c82-beed46284466',
+    'title': 'Test Todo',
+  })
+# ---
+# name: test_update_todo
+  dict({
+    'completed': True,
+    'description': 'This is an updated test todo',
+    'id': 'd2ab1f78-f1ba-44da-9c82-beed46284466',
+    'title': 'Updated Todo',
+  })
+# ---
