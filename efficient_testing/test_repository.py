@@ -12,6 +12,7 @@ from efficient_testing.repository import TodoRepository, TodoRepositoryInMemory,
 
 
 class RepositoryContract(ABC):
+    @pytest.fixture
     @abstractmethod
     def repo(self) -> TodoRepository:
         raise NotImplementedError
