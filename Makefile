@@ -4,3 +4,6 @@ cq:
 
 ute:
 	poetry run pytest efficient_testing
+
+uti:
+	poetry run pytest inefficient_testing

@@ -9,7 +9,6 @@ from .database import Base
 from .main import app, get_db
 from .schemas import ToDoOut
 
-# Shared in-memory DB setup
 SQLALCHEMY_DATABASE_URL = "sqlite://"
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}, poolclass=StaticPool)
 TestingSessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)

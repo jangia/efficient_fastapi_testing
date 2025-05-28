@@ -10,3 +10,4 @@ class ToDo(Base):
     title = Column(String, index=True)
     description = Column(String, index=True, nullable=True)
     completed = Column(Boolean, default=False)
+    # priority = Column(Integer, nullable=False)
