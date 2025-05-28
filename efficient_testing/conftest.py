@@ -15,6 +15,7 @@ def create_todo() -> Callable[..., ToDo]:
             title=kwargs.get("title", "Buy milk"),
             description=kwargs.get("description", "From the store"),
             completed=kwargs.get("completed", False),
+            # priority=kwargs.get("priority", 1),
         )
 
     return _create_todo
