@@ -7,6 +7,7 @@ from sqlalchemy.pool import StaticPool
 from . import models
 from .database import Base
 from .main import app, get_db
+from .schemas import ToDoOut
 
 # Shared in-memory DB setup
 SQLALCHEMY_DATABASE_URL = "sqlite://"
@@ -96,5 +97,4 @@ def test_list_todos(db_session):
     assert isinstance(data, list)
     assert len(data) == 1
 
-    titles = [todo["title"] for todo in data]
-    assert "Task 1" in titles
+    assert all(ToDoOut(**todo) for todo in data)

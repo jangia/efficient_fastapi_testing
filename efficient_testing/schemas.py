@@ -14,8 +14,10 @@ class ToDoUpdate(BaseModel):
     completed: Optional[bool] = None
 
 
-class ToDoOut(ToDoCreate):
-    id: int
+class ToDoOut(BaseModel):
+    id: str
+    title: str
+    description: Optional[str] = None
     completed: bool
 
     model_config = ConfigDict(from_attributes=True)
