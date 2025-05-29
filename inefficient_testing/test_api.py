@@ -7,7 +7,7 @@ from sqlalchemy.pool import StaticPool
 from . import models
 from .database import Base
 from .main import app, get_db
-from .schemas import ToDoOut
+from .schemas import ToDoRead
 
 SQLALCHEMY_DATABASE_URL = "sqlite://"
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}, poolclass=StaticPool)
@@ -96,4 +96,4 @@ def test_list_todos(db_session):
     assert isinstance(data, list)
     assert len(data) == 1
 
-    assert all(ToDoOut(**todo) for todo in data)
+    assert all(ToDoRead(**todo) for todo in data)

@@ -14,7 +14,7 @@ class ToDoUpdate(BaseModel):
     completed: Optional[bool] = None
 
 
-class ToDoOut(BaseModel):
+class ToDoRead(BaseModel):
     id: int
     title: str
     description: Optional[str] = None

@@ -19,33 +19,33 @@ def create(
     data: schemas.ToDoCreate,
     uuid_provider: UUIDProvider = Depends(get_uuid_provider),
     todo_repository: TodoRepository = Depends(get_todo_repository),
-) -> schemas.ToDoOut:
+) -> schemas.ToDoRead:
     todo = ToDo(id=uuid_provider.uuid4(), title=data.title, description=data.description, completed=False)
     todo_repository.add_todo(todo)
-    return schemas.ToDoOut.model_validate(todo)
+    return schemas.ToDoRead.model_validate(todo)
 
 
 @app.get("/todos/")
 def read_all(
     todo_repository: TodoRepository = Depends(get_todo_repository),
-) -> list[schemas.ToDoOut]:
+) -> list[schemas.ToDoRead]:
     todos = todo_repository.list_todos()
 
-    return [schemas.ToDoOut.model_validate(todo) for todo in todos]
+    return [schemas.ToDoRead.model_validate(todo) for todo in todos]
 
 
 @app.get("/todos/{todo_id}")
 def read(
     todo_id: UUID,
     todo_repository: TodoRepository = Depends(get_todo_repository),
-) -> schemas.ToDoOut:
+) -> schemas.ToDoRead:
     todo = todo_repository.get_todo(str(todo_id))
     if not todo:
         raise HTTPException(status_code=404, detail="Not found")
-    return schemas.ToDoOut.model_validate(todo)
+    return schemas.ToDoRead.model_validate(todo)
 
 
-@app.put("/todos/{todo_id}", response_model=schemas.ToDoOut)
+@app.put("/todos/{todo_id}", response_model=schemas.ToDoRead)
 def update(
     data: schemas.ToDoUpdate,
     todo_id: UUID,
@@ -60,7 +60,7 @@ def update(
     todo.completed = data.completed
 
     todo_repository.add_todo(todo)
-    return schemas.ToDoOut.model_validate(todo)
+    return schemas.ToDoRead.model_validate(todo)
 
 
 @app.delete("/todos/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
